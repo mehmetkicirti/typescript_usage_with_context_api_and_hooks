@@ -4,6 +4,7 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
 import { StoreProvider } from './service/Store';
+import './index.css';
 
 ReactDOM.render(
   <StoreProvider>
