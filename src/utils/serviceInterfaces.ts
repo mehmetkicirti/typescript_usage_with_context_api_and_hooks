@@ -5,14 +5,17 @@ import { IEpisode } from "../models/IEpisode";
  * All we needed Interfaces defined in here
  */
 
+export type Dispatch = React.Dispatch<IAction>;
+
 export interface IState {
-    episodes : Array<any>;
-    favourites: Array<any>;
+    episodes : Array<IEpisode>;
+    favourites: Array<IEpisode>;
 }
 
 export interface IAction {
     type:string;
-    payload:any;
+    //can be array or object so we added any attribute
+    payload:Array<IEpisode> | any;
 }
 
 export enum ActionTypes{
@@ -22,7 +25,9 @@ export enum ActionTypes{
 }
 
 export interface IEpisodeProps {
-    episodes : Array<IEpisode>,
-    toggleFavAction : (episode:IEpisode) => {},
-    favourites : Array<IEpisode>
+    episodes : Array<IEpisode>;
+    store:{state:IState,dispatch:Dispatch};
+    //we recreated own action because is changed. We give new parameter
+    toggleFavAction : (episode:IEpisode|any,dispatch:Dispatch,state:IState) => IAction;
+    favourites : Array<IEpisode>;
 }
