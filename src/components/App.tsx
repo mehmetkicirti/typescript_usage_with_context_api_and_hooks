@@ -1,7 +1,8 @@
 import React from 'react';
-import { Store, ActionTypes } from '../service/Store';
-import { Typography, Card, Col, Row } from 'antd';
+import { Store} from '../service/Store';
+import { Typography, Card, Col, Row,Button } from 'antd';
 import { IEpisode } from '../models/IEpisode';
+import { ActionTypes, IAction } from '../utils/serviceInterfaces';
 const { Title, Text } = Typography;
 const { Meta } = Card;
 
@@ -21,6 +22,21 @@ function App(): JSX.Element {
       payload: dataJSON._embedded.episodes
     });
   }
+  const toggleFavAction = (episode:IEpisode):IAction => {
+    const isIncludedFav = state.favourites.includes(episode);
+    let dispatchObject = {
+      type:ActionTypes.ADD_FAV,
+      payload:episode
+    }
+    if(isIncludedFav){
+      const withoutFav = state.favourites.filter((fav:IEpisode)=>fav.id !== episode.id);
+      dispatchObject={
+        type:ActionTypes.REMOVE_FAV,
+        payload:withoutFav
+      }
+    }
+    return dispatch(dispatchObject);
+  }
 
   return (
     <React.Fragment>
@@ -38,11 +54,14 @@ function App(): JSX.Element {
                 <Card
                   key={episode.id}
                   hoverable
-                  style={{ width: 240,margin:10 }}
+                  style={{ width: 240,margin:5 }}
                   cover={<img alt={`Rick and Morty ${episode.name}`} src={episode.image.medium} />}
                 >
                   <Meta title={episode.name} description={`Season : ${episode.season} Number : ${episode.number}`} />
                 </Card>
+            <Button style={{float:'inline-end'}} danger onClick={()=>toggleFavAction(episode)}>{
+              state.favourites.find((fav:IEpisode)=>fav.id === episode.id) ? 'Unfav' : 'Fav'
+            }</Button>
               </Col>
             )
           })
