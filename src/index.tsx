@@ -5,10 +5,20 @@ import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
 import { StoreProvider } from './service/Store';
 import './index.css';
+import {Router,RouteComponentProps} from '@reach/router';
+import Homepage from './components/Homepage';
+import FavPage from './components/FavPage';
+
+const RouterPage = (props:{pageComponent :JSX.Element} & RouteComponentProps) => props.pageComponent;
 
 ReactDOM.render(
   <StoreProvider>
-    <App />
+    <Router>
+      <App path='/'>
+        <RouterPage pageComponent={<Homepage/>} path="/"/>
+        <RouterPage pageComponent={<FavPage/>} path="/faves"/>
+      </App>
+    </Router>
   </StoreProvider>
   ,
   document.getElementById('root')
