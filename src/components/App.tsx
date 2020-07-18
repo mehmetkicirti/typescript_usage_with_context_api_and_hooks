@@ -5,14 +5,8 @@ import { Link } from '@reach/router';
 
 const { Title, Text } = Typography;
 
-
-//When needing component we used to create lazy.But we take suspense callback error,so with React.Suspense need to decorate where we wants to create.
-
-function App(): JSX.Element {
+function App(props:any){
   const { state} = React.useContext(Store);
-
-  //In here I defined props to send EpisodeList component's props to reach whatever it wants.
-
 
   return (
     <React.Fragment>
