@@ -16,6 +16,7 @@ const Homepage = () : JSX.Element => {
         store:{state,dispatch},
         favourites: state.favourites
     }
+    console.log(props.episodes);
     return (
         <Row>
             <React.Suspense fallback={<div style={{ fontSize: 32, fontWeight: 'bold', textAlign: 'center', margin: '0 auto' }}>loading..</div>}>

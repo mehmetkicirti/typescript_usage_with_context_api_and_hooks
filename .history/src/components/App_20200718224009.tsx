@@ -3,7 +3,6 @@ import { Store } from '../service/Store';
 import { Typography, Col, Row } from 'antd';
 import { Link } from '@reach/router';
 import { fetchDataAction } from '../utils/actions';
-import Homepage from './Homepage';
 
 const { Title, Text } = Typography;
 
@@ -31,9 +30,7 @@ function App(props: any) {
             </Link>
           </Col>
         </Row>
-        <Homepage/>
       </header>
-
     </React.Fragment>
   );
 }

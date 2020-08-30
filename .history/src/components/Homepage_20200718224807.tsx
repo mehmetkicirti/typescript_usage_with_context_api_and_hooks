@@ -16,6 +16,10 @@ const Homepage = () : JSX.Element => {
         store:{state,dispatch},
         favourites: state.favourites
     }
+    React.useEffect(()=>{
+        console.log("Deneme");
+    })
+
     return (
         <Row>
             <React.Suspense fallback={<div style={{ fontSize: 32, fontWeight: 'bold', textAlign: 'center', margin: '0 auto' }}>loading..</div>}>

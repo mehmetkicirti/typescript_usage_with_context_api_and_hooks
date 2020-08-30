@@ -1,11 +1,13 @@
 import React from 'react'
 import { IEpisode } from '../models/IEpisode';
 import { Col, Card, Button } from 'antd';
+import { fetchDataAction } from '../utils/actions';
 const { Meta } = Card;
 
 export default function EpisodeList(props: any): Array<JSX.Element> {
     const { episodes, toggleFavAction, favourites,store} = props;
     const {state,dispatch} = store;
+
     return episodes.map((episode: IEpisode) => {
         return (
             <Col key={episode.id} span={6}>

@@ -9,6 +9,7 @@ const EpisodeList = React.lazy<any>(() => import('./EpisodeList'));
 const Homepage = () : JSX.Element => {
     const { state, dispatch } = React.useContext(Store);
     
+
     //In here I defined props to send EpisodeList component's props to reach whatever it wants.
     const props: IEpisodeProps = {
         episodes: state.episodes,
